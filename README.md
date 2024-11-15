@@ -23,3 +23,9 @@ Ensure that the following dependencies are installed on your local machine (for 
 ```bash
 sudo apt update
 sudo apt install openssh-client
+
+## Getting started
+
+### Step 1: SSH Access
+
+To access the AWS EC2 instance via SSH, use the following command:
