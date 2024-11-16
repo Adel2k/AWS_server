@@ -8,5 +8,3 @@ if  ! diff <(tail -n 15 /var/log/auth.log | grep "Connection closed by authentic
 	tail -n 15 /var/log/auth.log | grep "Connection closed by authenticating user" > /home/ubuntu/failed_logs
 	echo "done"
 fi
-
-
