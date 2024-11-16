@@ -21,9 +21,9 @@ Ensure that the following dependencies are installed on your local machine (for 
 ### For Debian/Ubuntu:
 
 ```bash
-sudo apt update
-sudo apt install openssh-client
-
+    sudo apt update
+    sudo apt install openssh-client
+```
 ## Getting started
 
 ### Step 1: SSH Access
