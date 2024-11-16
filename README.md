@@ -138,3 +138,93 @@ To view or modify firewall settings, use the following UFW commands:
 ```bash
     sudo ufw disable
 ```
+
+
+# Add User with SSH Key-Based Authentication Script
+
+## Description
+This script automates the process of adding a new Linux user, generating SSH keys, and setting up SSH key-based authentication. It’s designed to simplify the setup process for administrators who need to grant secure SSH access to multiple users quickly.
+
+## Prerequisites
+- **Root/Sudo Access**: This script requires superuser privileges to add users and configure SSH settings.
+- **SSH Installed**: SSH must be installed on the system as the script uses `ssh-keygen` to create the SSH key pair.
+
+## Usage
+
+1. **Download and Save the Script**  
+   Save the script as `add_user_with_ssh.sh`.
+
+2. **Make the Script Executable**  
+   Run the following command to make the script executable:
+   ```bash
+   chmod +x add_user_with_ssh.sh
+   ```
+
+3. **Run the Script with Sudo Privileges**
+   Execute the script using sudo:
+   ```bash
+    sudo ./add_user_with_ssh.sh
+    ```
+
+4. **Follow Prompts**
+You will be prompted to enter a username. The script will:
+
+- Add the specified user to the system.
+- Generate an SSH key pair for the user.
+- Set up the .ssh directory and authorized_keys file.
+- Enable SSH key-based authentication for the user.
+
+## Script Overview
+Here’s a breakdown of what each part of the script does:
+
+- **Prompt for Username:** Requests the new username.
+- **Create User:** Adds the new user account.
+- **Generate SSH Key Pair:** Creates an SSH key pair in the user’s .ssh directory.
+- **Create and Configure Authorized Keys:** Sets up the authorized_keys file and adds the public key, allowing secure SSH access.
+
+**Simple Output** 
+```bash
+Enter your user name: johndoe
+```
+
+
+
+# Failed Login Alert Script
+
+## Description
+This script monitors failed login attempts on the system. When a failed login attempt is detected, the script sends an email alert to a specified recipient and logs the latest failed login attempts. It’s useful for administrators who want to be notified about suspicious login activities and track the recent failed login entries.
+
+## Prerequisites
+- **Mail Setup**: Ensure that `ssmtp` (or another compatible mail-sending program) is installed and configured to send emails.
+- **Log Access**: This script requires read access to `/var/log/auth.log` to detect failed login attempts.
+
+## Variables
+- **`recipient`**: Email address to send the alert to.
+- **`subject`**: Subject line of the alert email.
+- **`message`**: Body content of the alert email.
+
+## Usage
+
+1. **Set up the Script**  
+   Save the script as `failed_login_alert.sh`.
+
+2. **Make the Script Executable**  
+   Run the following command to make the script executable:
+   ```bash
+   chmod +x failed_login_alert.sh
+
+3. **Configure the Script**
+Update the recipient variable with the email address where you want to receive alerts. Optionally, adjust the subject and message variables as desired.
+
+4. **Run the Script**
+
+Execute the script manually or set it up as a cron job for periodic checks:
+
+```bash
+./monitoring.sh
+```
+To run as a cron job every 10 minutes, add this line to your crontab:
+```bash
+*/10 * * * * /path/to/failed_login_alert.sh
+```
+
